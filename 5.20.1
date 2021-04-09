@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class LabProgram {
+
+   public static void main(String[] args)
+   {
+       Scanner scan = new Scanner(System.in);
+       // create an array to store the smallest 2 integers
+       int smallest[] = new int[2];
+       int array[]; // array to store the input integers
+       int n, num;
+       // read the number of integers to input
+       n = scan.nextInt();
+       array = new int[n]; // create an array of size n
+         
+       // loop to read n integers into the array
+       for(int i=0;i<n;i++)
+       {
+           array[i] = scan.nextInt();
+       }
+         
+       // set first element of smallest array to first element of array
+       smallest[0] = array[0];
+       // loop through the array
+       for(int i=1;i<n;i++)
+       {
+           // if i=1, set first element of smallest to this element if this element < smallest[0]
+           // and set smallest[1] to earlier smallest[0]
+           if(i == 1)
+           {
+               if(smallest[0] > array[i])
+               {
+                   smallest[1] = smallest[0];
+                   smallest[0] = array[i];
+               }else // if array[1] > smallest[0], set smallest[1] to this element
+               {
+                   smallest[1] = array[i];
+               }
+           }else // for i > 1
+           {
+               // check if ith element is < smallest[0]
+               if(smallest[0] > array[i])
+               {
+                   smallest[1] = smallest[0];
+                   smallest[0] = array[i];
+               }else if(smallest[1] > array[i]) // check if ith element > smallest[0] and < smallest[1]
+                   smallest[1] = array[i];
+           }
+       }
+         
+       // display the two smallest elements
+       System.out.print(smallest[0]+" "+smallest[1]);
+   }
+}
+//end of program
